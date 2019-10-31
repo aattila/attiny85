@@ -42,7 +42,7 @@ void sendIR(uint16_t val) {
 //  DigiKeyboard.println(val);
   analogWrite(DATA_PIN, val);
   digitalWrite(SYN_PIN, !digitalRead(SYN_PIN));
-  delay(1200); 
+  delay(1000); 
   analogWrite(DATA_PIN, 0);
   irCodeLast = irCode;
   lastPress = millis();
@@ -62,7 +62,7 @@ void processPulses() {
     }
   }
 
-  if (irCode != irCodeLast || (millis() - lastPress) > 500) {
+  if (irCode != irCodeLast || (millis() - lastPress) > 2000) {
     switch (irCode) {
       case IR_1:
         sendIR(10);
